@@ -11,6 +11,7 @@ class App extends Component {
 
     this.state = {
       counter: 0,
+      nextButton: false,
       questionId: 1,
       question: "",
       answerOptions: [],
@@ -19,6 +20,7 @@ class App extends Component {
       result: "",
     };
 
+    this.setNextQuestion = this.setNextQuestion.bind(this);
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
@@ -58,7 +60,7 @@ class App extends Component {
     this.setUserAnswer(event.currentTarget.value);
 
     if (this.state.questionId < quizQuestions.length) {
-      setTimeout(() => this.setNextQuestion(), 8000);
+      this.setState({ nextButton: true });
     } else {
       setTimeout(() => this.setResults(this.getResults()), 8000);
     }
@@ -81,8 +83,11 @@ class App extends Component {
     this.setState({
       counter: counter,
       questionId: questionId,
+      nextButton: false,
       question: quizQuestions[counter].question,
       answerOptions: quizQuestions[counter].answers,
+      postAnswer: quizQuestions[counter].postAnswer,
+      wikiLink: quizQuestions[counter].wikiLink,
       answer: "",
     });
   }
@@ -104,16 +109,23 @@ class App extends Component {
 
   renderQuiz() {
     return (
-      <Quiz
-        answer={this.state.answer}
-        answerOptions={this.state.answerOptions}
-        questionId={this.state.questionId}
-        question={this.state.question}
-        postAnswer={this.state.postAnswer}
-        wikiLink={this.state.wikiLink}
-        questionTotal={quizQuestions.length}
-        onAnswerSelected={this.handleAnswerSelected}
-      />
+      <>
+        <Quiz
+          answer={this.state.answer}
+          answerOptions={this.state.answerOptions}
+          questionId={this.state.questionId}
+          question={this.state.question}
+          postAnswer={this.state.postAnswer}
+          wikiLink={this.state.wikiLink}
+          questionTotal={quizQuestions.length}
+          onAnswerSelected={this.handleAnswerSelected}
+        />
+        {this.state.nextButton ? (
+          <button onClick={this.setNextQuestion} className="next-button">
+            NEXT
+          </button>
+        ) : null}
+      </>
     );
   }
 

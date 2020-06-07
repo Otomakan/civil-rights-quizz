@@ -6,7 +6,6 @@ import QuestionCount from "../components/QuestionCount";
 import AnswerOption from "../components/AnswerOption";
 
 function Quiz(props) {
-  console.log(props);
   function renderAnswerOptions(key) {
     return (
       <AnswerOption

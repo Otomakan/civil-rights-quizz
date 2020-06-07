@@ -199,3 +199,16 @@ body {
 .link:hover::before {
   transition-duration: 0.15s;
 }
+.next-button {
+  font-weight: bold;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  border-radius: 20px;
+  color: #4bb543;
+  font-size: 30px;
+  background: white;
+  padding: 10px 25px;
+  cursor: pointer;
+  border: 3px solid #4bb543;
+}
