@@ -4,21 +4,12 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #eee;
   padding: 20px;
-  color: white;
+  color: black;
   text-align: center;
 }
 
 .App-intro {
   font-size: large;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

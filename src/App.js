@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import quizQuestions from './api/quizQuestions';
-import Quiz from './components/Quiz';
-import Result from './components/Result';
-import logo from './svg/logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import quizQuestions from "./api/quizQuestions";
+import Quiz from "./components/Quiz";
+import Result from "./components/Result";
+import logo from "./svg/logo.svg";
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -12,23 +12,25 @@ class App extends Component {
     this.state = {
       counter: 0,
       questionId: 1,
-      question: '',
+      question: "",
       answerOptions: [],
-      answer: '',
+      answer: "",
       answersCount: {},
-      result: ''
+      result: "",
     };
 
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
   componentDidMount() {
-    const shuffledAnswerOptions = quizQuestions.map(question =>
+    const shuffledAnswerOptions = quizQuestions.map((question) =>
       this.shuffleArray(question.answers)
     );
     this.setState({
       question: quizQuestions[0].question,
-      answerOptions: shuffledAnswerOptions[0]
+      postAnswer: quizQuestions[0].postAnswer,
+      wikiLink: quizQuestions[0].wikiLink,
+      answerOptions: shuffledAnswerOptions[0],
     });
   }
 
@@ -56,9 +58,9 @@ class App extends Component {
     this.setUserAnswer(event.currentTarget.value);
 
     if (this.state.questionId < quizQuestions.length) {
-      setTimeout(() => this.setNextQuestion(), 300);
+      setTimeout(() => this.setNextQuestion(), 8000);
     } else {
-      setTimeout(() => this.setResults(this.getResults()), 300);
+      setTimeout(() => this.setResults(this.getResults()), 8000);
     }
   }
 
@@ -66,9 +68,9 @@ class App extends Component {
     this.setState((state, props) => ({
       answersCount: {
         ...state.answersCount,
-        [answer]: (state.answersCount[answer] || 0) + 1
+        [answer]: (state.answersCount[answer] || 0) + 1,
       },
-      answer: answer
+      answer: answer,
     }));
   }
 
@@ -81,25 +83,23 @@ class App extends Component {
       questionId: questionId,
       question: quizQuestions[counter].question,
       answerOptions: quizQuestions[counter].answers,
-      answer: ''
+      answer: "",
     });
   }
 
   getResults() {
     const answersCount = this.state.answersCount;
     const answersCountKeys = Object.keys(answersCount);
-    const answersCountValues = answersCountKeys.map(key => answersCount[key]);
+    const answersCountValues = answersCountKeys.map((key) => answersCount[key]);
     const maxAnswerCount = Math.max.apply(null, answersCountValues);
 
-    return answersCountKeys.filter(key => answersCount[key] === maxAnswerCount);
+    return answersCountKeys.filter(
+      (key) => answersCount[key] === maxAnswerCount
+    );
   }
 
   setResults(result) {
-    if (result.length === 1) {
-      this.setState({ result: result[0] });
-    } else {
-      this.setState({ result: 'Undetermined' });
-    }
+    this.setState({ result: "completed" });
   }
 
   renderQuiz() {
@@ -109,6 +109,8 @@ class App extends Component {
         answerOptions={this.state.answerOptions}
         questionId={this.state.questionId}
         question={this.state.question}
+        postAnswer={this.state.postAnswer}
+        wikiLink={this.state.wikiLink}
         questionTotal={quizQuestions.length}
         onAnswerSelected={this.handleAnswerSelected}
       />
@@ -124,7 +126,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>React Quiz</h2>
+          <h2>Civil Rights Quiz</h2>
         </div>
         {this.state.result ? this.renderResult() : this.renderQuiz()}
       </div>

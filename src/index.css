@@ -1,15 +1,15 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -29,7 +29,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   background: #fff;
-  border-radius: 3px;
+  border-radius: 20px;
 }
 
 @media (min-width: 769px) {
@@ -66,6 +66,9 @@ body {
 .answerOption {
   border-top: 1px solid #eee;
 }
+.answerOption:last-child {
+  border-radius: 0px 0px 20px 20px;
+}
 
 .answerOption:hover {
   background-color: #eefbfe;
@@ -99,7 +102,7 @@ body {
   left: 38px;
   width: 28px;
   height: 28px;
-  content: '';
+  content: "";
   display: inline-block;
   vertical-align: middle;
   background: #fff;
@@ -109,13 +112,12 @@ body {
 }
 
 .radioCustomButton:checked ~ .radioCustomLabel:before {
-  content: '';
+  content: "";
   background: #8bc53f url(./svg/icon-check.svg) no-repeat;
   background-size: 27px;
   border-color: #8bc53f;
 }
 
-/* Animation */
 .fade-enter {
   opacity: 0;
 }
@@ -145,4 +147,55 @@ body {
 .fade-appear.fade-appear-active {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
+}
+
+.link {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 700;
+
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+
+  padding-left: 10px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+}
+
+.link::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to top, #fed330 25%, rgba(0, 0, 0, 0) 40%);
+
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  z-index: -1;
+
+  will-change: width;
+  transform: rotate(-2deg);
+  transform-origin: left bottom;
+}
+
+.link:hover::before {
+  width: 0;
+}
+
+/*
+* animation styles
+*/
+
+.link::before {
+  transition: width 0.1s ease-out;
+}
+
+.link:hover::before {
+  transition-duration: 0.15s;
 }

@@ -4,9 +4,10 @@
   "private": false,
   "dependencies": {
     "prop-types": "^15.6.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-popover": "^0.5.10",
+    "react-scripts": "3.4.1",
     "react-transition-group": "^1.2.1"
   },
   "scripts": {
