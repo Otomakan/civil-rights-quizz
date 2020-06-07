@@ -1,8 +1,4 @@
-# React Quiz
-
-[View demo](http://mitchgavan.github.io/react-multi-choice-quiz/)
-
-There's also an accompanying [tutorial blog post](https://mitchgavan.com/react-quiz/).
+# React Civil Rights Quiz
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
